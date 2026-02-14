@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfmgjvj4lf8hc"]
+
+[ext_resource type="Script" uid="uid://bavtnr0jq5v5r" path="res://game.gd" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://cgd1odwdm14k2" path="res://realorb.tscn" id="2_e2o6t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_80nbo"]
+sky_material = SubResource("ProceduralSkyMaterial_mwb40")
+
+[sub_resource type="Environment" id="Environment_e2o6t"]
+background_mode = 2
+sky = SubResource("Sky_80nbo")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2o6t"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_80nbo")
+bubble_scene = ExtResource("2_e2o6t")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e2o6t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.6665325, 0.7430747, -0.059786372, 0, 0.08019893, 0.9967789, 0.74547595, 0.66438556, -0.053455193, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58030176, 11.0745325)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 2.2269225e-08, 0.49788475, 1.214386)
+transparency = 0.8
+use_collision = true
+size = Vector3(10.046509, 8.338867, 8.428772)
+material = SubResource("StandardMaterial3D_e2o6t")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(-1, 7.2895446e-08, 0, -8.742277e-08, -0.83382666, 0, 0, 0, 1, 0, 0, 0.17109513)
+operation = 2
+size = Vector3(10, 8.980225, 7.5221343)

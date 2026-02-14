@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://cgd1odwdm14k2"]
+
+[ext_resource type="Script" uid="uid://c08hbm3uqktv1" path="res://realorb.gd" id="1_8lr38"]
+[ext_resource type="PackedScene" uid="uid://bkerp2rvse3ha" path="res://csg_sphere_3d.tscn" id="1_78smf"]
+[ext_resource type="AudioStream" uid="uid://qbsjwwybwv2t" path="res://Noise.wav" id="2_8lr38"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8lr38"]
+friction = 0.0
+bounce = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rt7hi"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_w2vpn"]
+_data = [Vector2(0, 0.8491296), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1ehlg"]
+_data = [Vector2(0, 0.8491296), 0.0, 0.0, 0, 0, Vector2(0.9924812, 0.023533225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_flugt"]
+_data = [Vector2(0, 0.8533205), 0.0, 0.0, 0, 0, Vector2(0.9962407, 0.010960698), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_vef74"]
+curve_x = SubResource("Curve_w2vpn")
+curve_y = SubResource("Curve_1ehlg")
+curve_z = SubResource("Curve_flugt")
+
+[sub_resource type="Curve" id="Curve_gnsx6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mfdv2"]
+curve = SubResource("Curve_gnsx6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tnsf1"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+inherit_velocity_ratio = 0.228
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+directional_velocity_min = -200.00002
+directional_velocity_max = 199.99998
+directional_velocity_curve = SubResource("CurveXYZTexture_vef74")
+scale_min = 0.19999999
+scale_curve = SubResource("CurveTexture_mfdv2")
+color = Color(0.18431373, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
+emission_enabled = true
+emission = Color(0.4832282, 0.78053176, 1, 1)
+emission_energy_multiplier = 7.27
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yx0ks"]
+material = SubResource("StandardMaterial3D_mwb40")
+top_radius = 0.2
+bottom_radius = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8lr38"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_8lr38")
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_8lr38")
+
+[node name="CSGSphere3D" parent="." instance=ExtResource("1_78smf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
+radius = 1.0
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00021803379, 0)
+material_overlay = SubResource("StandardMaterial3D_rt7hi")
+transparency = 0.22
+emitting = false
+amount = 100
+amount_ratio = 0.4122
+lifetime = 0.53
+one_shot = true
+preprocess = 1.0
+speed_scale = 0.33
+explosiveness = 0.61
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_tnsf1")
+draw_pass_1 = SubResource("CylinderMesh_yx0ks")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.995, 0)
+stream = ExtResource("2_8lr38")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_8lr38")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

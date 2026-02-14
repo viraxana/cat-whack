@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://evy47tdlw65w"]
+
+[ext_resource type="Script" uid="uid://bv0lhd2ga47f4" path="res://intro.gd" id="1_0a7ni"]
+[ext_resource type="Texture2D" uid="uid://cup4fhxxjv6k1" path="res://coollines.png" id="1_7a8ye"]
+[ext_resource type="Texture2D" uid="uid://dhv7aivvtuosx" path="res://button.png" id="2_0a7ni"]
+[ext_resource type="Texture2D" uid="uid://bvel3wc5qeivg" path="res://realpaw.png" id="3_y72e6"]
+[ext_resource type="Script" uid="uid://bedv05ik1vej3" path="res://texture_button.gd" id="5_y72e6"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_0a7ni")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button2" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(1031.0001, 937.0001)
+scale = Vector2(0.6035294, 0.6035294)
+texture = ExtResource("2_0a7ni")
+
+[node name="Coollines" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1034.5, 1289.8236)
+rotation = 3.1415927
+scale = Vector2(0.50027794, 0.500278)
+texture = ExtResource("1_7a8ye")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+anchor_mode = 0
+
+[node name="Button" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1034.5, 1212.8235)
+scale = Vector2(0.6035294, 0.6035294)
+texture = ExtResource("2_0a7ni")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 511.0
+offset_top = 1201.0
+offset_right = 1572.5
+offset_bottom = 1617.0
+theme_override_font_sizes/normal_font_size = 100
+text = "Press the Paw to Play!"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+offset_left = 879.0
+offset_top = 834.0
+offset_right = 1192.5
+offset_bottom = 1250.0
+theme_override_font_sizes/normal_font_size = 70
+text = "Defeated Spheres:"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+offset_left = 767.5
+offset_top = 1201.0
+offset_right = 1316.0
+offset_bottom = 1617.0
+theme_override_font_sizes/normal_font_size = 100
+text = "Play Again?"
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = -243.0
+offset_top = 578.0
+offset_right = 2307.0
+offset_bottom = 3878.0
+texture_normal = ExtResource("3_y72e6")
+script = ExtResource("5_y72e6")
