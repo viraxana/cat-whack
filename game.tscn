@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfmgjvj4lf8hc"]
+[gd_scene load_steps=8 format=3 uid="uid://cfmgjvj4lf8hc"]
 
 [ext_resource type="Script" uid="uid://bavtnr0jq5v5r" path="res://game.gd" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cgd1odwdm14k2" path="res://realorb.tscn" id="2_e2o6t"]
@@ -17,6 +17,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2o6t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2o6t"]
+size = Vector3(16.374023, 14.911133, 1)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_80nbo")
@@ -40,6 +43,13 @@ size = Vector3(10.046509, 8.338867, 8.428772)
 material = SubResource("StandardMaterial3D_e2o6t")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(-1, 7.2895446e-08, 0, -8.742277e-08, -0.83382666, 0, 0, 0, 1, 0, 0, 0.17109513)
+transform = Transform3D(-1, 7.2895446e-08, 0, -8.742277e-08, -0.83382666, 0, 0, 0, 1, 0, 0, 0.5642432)
 operation = 2
-size = Vector3(10, 8.980225, 7.5221343)
+size = Vector3(10, 8.980225, 8.308431)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.203653)
+shape = SubResource("BoxShape3D_e2o6t")

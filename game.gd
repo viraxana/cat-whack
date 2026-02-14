@@ -63,3 +63,4 @@ func pop_bubble(bubble):
 	print("Popping bubble birdie!")
 	bubbles.erase(bubble)
 	bubble.queue_free()
+	
