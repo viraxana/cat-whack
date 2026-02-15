@@ -2,6 +2,7 @@ extends Node3D
 
 @export var bubble_scene: PackedScene
 var pop_effect_scene = preload("particle_audio.tscn")
+const FARTS = preload("uid://crxo0xsyaq0lv")
 
 
 @onready var min_distance: float = 0.6
@@ -22,7 +23,7 @@ func _ready() -> void:
 	
 	var play_button = intro.find_child("TextureButton")
 	play_button.pressed.connect(_on_play_pressed)
-
+	
 func _on_play_pressed():
 	intro.queue_free()
 	spawn_bubbles()
