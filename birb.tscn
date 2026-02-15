@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2v0dkbguomos"]
+
+[ext_resource type="Texture2D" uid="uid://82v6srxacuk0" path="res://bird_sprites.png" id="1_buorm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4c0a"]
+emission_enabled = true
+emission = Color(0, 0.6509804, 0, 1)
+emission_energy_multiplier = 0.0
+ao_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8u3n"]
+atlas = ExtResource("1_buorm")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4c0a"]
+atlas = ExtResource("1_buorm")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeidj"]
+atlas = ExtResource("1_buorm")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7t4e"]
+atlas = ExtResource("1_buorm")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fyu0"]
+atlas = ExtResource("1_buorm")
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k33r"]
+atlas = ExtResource("1_buorm")
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_asacb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8u3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4c0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeidj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7t4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fyu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k33r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_o4c0a")
+transparency = 0.9
+cast_shadow = 0
+radius = 1.07
+radial_segments = 42
+rings = 42
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.72948766, 0, 0, 0, 0.72948766, 0, 0, 0, 1, 0, 0, 0)
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_asacb")
+autoplay = "default"
+frame_progress = 0.7252139
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite3D"]

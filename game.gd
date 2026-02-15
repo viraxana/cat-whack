@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var bubble_scene: PackedScene
+var pop_effect_scene = preload("particle_audio.tscn")
 
 
 @onready var min_distance: float = 0.6
@@ -28,7 +29,7 @@ func _on_play_pressed():
 
 func spawn_bubbles():
 	print("LESSSGOOOOO")
-	var count = randi_range(2,10)
+	var count = randi_range(6,10)
 	print("Spawning ",count," spheres")
 	for i in range(count):
 		print("Sphere ",i," spawned")
@@ -58,9 +59,25 @@ func spawn_bubbles():
 			bubbles.append(bubble) 
 			#bubble.queue_free() 
 			#print("Couldn't find space for bubble ", i, ", skipping it")
+		bubble.popped.connect(pop_bubble)
 
 func pop_bubble(bubble):
 	print("Popping bubble birdie!")
+	var effect = pop_effect_scene.instantiate()
+	effect.position = bubble.global_position
+	add_child(effect)
+	var particles = effect.get_child(0)
+	
+	particles.call_deferred("set_emitting", true)
+	particles.call_deferred("restart")
+	
+	#particles.set_emitting(true)
+	#particles.restart()
+	
+	effect.get_child(1).play(true)
+	get_tree().create_timer(particles.lifetime + 0.5).timeout.connect(effect.queue_free)
+	
+	
 	bubbles.erase(bubble)
 	bubble.queue_free()
 	

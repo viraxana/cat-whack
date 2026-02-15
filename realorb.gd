@@ -1,6 +1,10 @@
 extends RigidBody3D
 
 @export var max_speed: float = 6.0
+#@onready var gpu_particles_3d_2: GPUParticles3D = $CSGSphere3D/GPUParticles3D2
+@onready var rigid_body_3d: RigidBody3D = $"."
+#@onready var audio_stream_player_3d_2: AudioStreamPlayer3D = $CSGSphere3D/AudioStreamPlayer3D2
+
 
 signal popped(bubble)
 
@@ -15,9 +19,6 @@ func _ready() -> void:
 	#print("Velocity set to ", linear_velocity)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:

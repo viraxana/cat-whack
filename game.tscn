@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfmgjvj4lf8hc"]
+[gd_scene load_steps=11 format=3 uid="uid://cfmgjvj4lf8hc"]
 
 [ext_resource type="Script" uid="uid://bavtnr0jq5v5r" path="res://game.gd" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cgd1odwdm14k2" path="res://realorb.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://cq71k71pc1k2r" path="res://forestdoubled.png" id="3_feb5d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,6 +22,12 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_e2o6t"]
 size = Vector3(16.374023, 14.911133, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_feb5d"]
+albedo_texture = ExtResource("3_feb5d")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e2o6t"]
+material = SubResource("StandardMaterial3D_feb5d")
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_80nbo")
 bubble_scene = ExtResource("2_e2o6t")
@@ -37,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58030176, 11.0745325)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 2.2269225e-08, 0.49788475, 1.214386)
-transparency = 0.8
+transparency = 1.0
 use_collision = true
 size = Vector3(10.046509, 8.338867, 8.428772)
 material = SubResource("StandardMaterial3D_e2o6t")
@@ -53,3 +60,7 @@ input_ray_pickable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.203653)
 shape = SubResource("BoxShape3D_e2o6t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(12.380722, 0, 0, 0, -4.371139e-08, -15.183231, 0, 1, -6.6368017e-07, 0, 1.0300512, -5.116167)
+mesh = SubResource("PlaneMesh_e2o6t")
