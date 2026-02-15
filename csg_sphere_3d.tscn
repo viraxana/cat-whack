@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bkerp2rvse3ha"]
 
-[ext_resource type="AudioStream" uid="uid://qbsjwwybwv2t" path="res://Noise.wav" id="1_ku37l"]
+[ext_resource type="AudioStream" uid="uid://4i4a5aauskso" path="res://loudstuff.wav" id="1_ku37l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80nbo"]
 albedo_color = Color(1, 0.827451, 1, 1)

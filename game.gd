@@ -3,7 +3,9 @@ extends Node3D
 @export var bubble_scene: PackedScene
 var pop_effect_scene = preload("particle_audio.tscn")
 const FARTS = preload("uid://crxo0xsyaq0lv")
-
+var total_bubbles = 0
+#const play_again = preload("res://play_again.tscn")
+const PLAY_AGAIN = preload("uid://cjqrw4s4yky7y")
 
 @onready var min_distance: float = 0.6
 @onready var spawn_area_x: float = 1.5
@@ -15,7 +17,7 @@ var bubbles: Array[Node3D] = []
 #@onready var intro_canvas: CanvasLayer = $CanvasLayer
 #@onready var play_button: TextureButton = $CanvasLayer/TextureButton
 var intro = null
-
+var play_again = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	intro = load("res://intro.tscn").instantiate()
@@ -27,10 +29,15 @@ func _ready() -> void:
 func _on_play_pressed():
 	intro.queue_free()
 	spawn_bubbles()
+	
+func _on_replay_pressed():
+	play_again.queue_free()
+	spawn_bubbles()
 
 func spawn_bubbles():
 	print("LESSSGOOOOO")
 	var count = randi_range(6,10)
+	total_bubbles = count
 	print("Spawning ",count," spheres")
 	for i in range(count):
 		print("Sphere ",i," spawned")
@@ -81,4 +88,10 @@ func pop_bubble(bubble):
 	
 	bubbles.erase(bubble)
 	bubble.queue_free()
-	
+	if bubbles.size() == 0:
+		play_again = PLAY_AGAIN.instantiate()
+		var label = play_again.find_child("NumberOfStuff")
+		label.text = str(total_bubbles)
+		add_child(play_again)
+		var play_button = play_again.find_child("TextureButton")
+		play_button.pressed.connect(_on_replay_pressed)

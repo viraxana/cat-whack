@@ -56,10 +56,10 @@ offset_bottom = 1617.0
 theme_override_font_sizes/normal_font_size = 100
 text = "Play Again?"
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 879.0
+[node name="NumberOfStuff" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 991.0
 offset_top = 987.0
-offset_right = 1427.5
+offset_right = 1539.5
 offset_bottom = 1403.0
 theme_override_font_sizes/normal_font_size = 75
 text = "--"

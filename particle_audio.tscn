@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://co5vhhgmekn6y"]
 
-[ext_resource type="AudioStream" uid="uid://dp0gydmjcwaap" path="res://Piano sound.wav" id="1_x5u7q"]
+[ext_resource type="AudioStream" uid="uid://4i4a5aauskso" path="res://loudstuff.wav" id="1_x5u7q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcixr"]
 shading_mode = 0
